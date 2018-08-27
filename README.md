@@ -4,19 +4,19 @@
 Overview
 --------
   
-  The passSentence generator `rance` uses lists of words separated by parts of speech to generate random English sentences. In the spirit of [diceware](http://world.std.com/~reinhold/diceware.html), `rance` trades total randomness for a more memorable structure. Rather than a string of random words, `rance` provides an even more memorabe structure---a random sentence---with comparable levels of entropy.
+  The passSentence generator `rance` uses lists of words separated by parts of speech to generate random English sentences. In the spirit of [diceware](http://world.std.com/~reinhold/diceware.html), `rance` trades total randomness for a more memorable structure. Rather than a string of random words, `rance` provides an even more memorabe structure--a random sentence--with comparable levels of entropy.
 
 Motivation
 ----------
   
   [Password strength](https://en.wikipedia.org/wiki/Password_strength) is derived from randomness (entropy). The strongest, shortest-length passwords are random collections of letters, numbers, and symbols. Completely random strings are notoriously difficult for humans to remember, which is why many studies have shown that people [reuse](http://www.dphu.org/uploads/attachements/books/books_3522_0.pdf) [bad passwords](https://www.tandfonline.com/doi/abs/10.1080/01449290903121386) even though they understand what good passwords are. 
-  There are benefits and drawbacks to all password management strategies. Even [expert-recommended](http://www.ra.ethz.ch/cdstore/www2005/docs/p471.pdf) strategies like password managers require the user to remember *at least one* "master password" that unlocks all other passwords---which means that the security of *everything* is riding on the strength of that one password. That is where strong, easily memorizable pass sentences come in.
+  There are benefits and drawbacks to all password management strategies. Even [expert-recommended](http://www.ra.ethz.ch/cdstore/www2005/docs/p471.pdf) strategies like password managers require the user to remember *at least one* "master password" that unlocks all other passwords--which means that the security of *everything* is riding on the strength of that one password. That is where strong, easily memorizable pass sentences come in.
   This work is similar to Aaron Bassett's [pass phrase](https://github.com/aaronbassett/Pass-phrase) generator, though ours provides additional structures, parts of speech, entropy analysis, and a secure memory option.
   
 Security
 --------
 
-Our security comes from the number of combinations of sentences it is possible to make using our structures and word lists. Random choices are made using Python's built-in secure [secrets](https://docs.python.org/3/library/secrets.html) library. You can find the structures in `Structures.py` and the wordlists in `Wordlists.py` (individual lists are included as `.txt` files), as well as test functions in `rance_secmem.py` and `rance.py` that calculate the bits of entropy for each. There are auxiliary lists in the parts of speech folders. Thanks to [Desi Quintans](http://www.desiquintans.com/nounlist) and [Ashley Bovan] (http://www.ashley-bovan.co.uk/words/partsofspeech.html) for their lists. 
+Our security comes from the number of combinations of sentences it is possible to make using our structures and word lists. Random choices are made using Python's built-in secure [secrets](https://docs.python.org/3/library/secrets.html) library. You can find the structures in `Structures.py` and the wordlists in `Wordlists.py` (individual lists are included as `.txt` files), as well as test functions in `rance_secmem.py` and `rance.py` that calculate the bits of entropy for each. There are auxiliary lists in the parts of speech folders. Thanks to [Desi Quintans](http://www.desiquintans.com/nounlist) and [Ashley Bovan](http://www.ashley-bovan.co.uk/words/partsofspeech.html) for their lists. 
 
 `rance` has three password strength settings: basic, extra, and cryptographic.
 

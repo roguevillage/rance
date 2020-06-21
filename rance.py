@@ -19,7 +19,7 @@ def welcome():
     print("[2] Cryptographic Strenth (~128 bits entropy)")
 
     # Get input
-    char = raw_input(">> ")
+    char = input(">> ")
 
     # Process input
     if int(char) == 0:
@@ -34,13 +34,15 @@ def welcome():
 def genBasicSentence():
     structure = secrets.choice(s.simple)
     sentence, punct = constructSentence(structure)
-    print ">> " + sentence + punct
+    print(structure)
+    print(sentence + punct)
 
 # Generates "complex structure" pass sentence ~77 bits entropy
 def genMediumSentence():
     structure = secrets.choice(s.complex)
     sentence, punct = constructSentence(structure)
-    print sentence + punct
+    print(structure)
+    print(sentence + punct)
 
 # Generates simple + complex structure pass sentence ~128 bits entropy
 def genCryptoSentence():
@@ -50,7 +52,8 @@ def genCryptoSentence():
     part2, punct2 = constructSentence(structure2)
     connector = secrets.choice(w.conjunctions)
     sentence = part1 + ', ' + connector + ' ' + part2 + punct1
-    print sentence
+    print(structure1 + " " + structure2)
+    print(sentence)
 
 # Constructs sentence from input structure; returns tuple (sentence, punt)
 def constructSentence(s):
@@ -90,13 +93,13 @@ def calcSentCombos(s):
     combs = 1
     for i in range(len(s)):
         if s[i] == 'N':
-            entropy*= len(w.nouns)
+            combs *= len(w.nouns)
         elif s[i] == 'V':
             combs *= len(w.verbs)
         elif s[i] == 'A':
             combs *= len(w.adjectives)
         elif s[i] == 'L':
-            combs *= 1500
+            combs *= len(w.adverbs)
         elif s[i] == 'C':
             combs *= len(w.conjunctions)
         elif s[i] == 'P':
@@ -111,12 +114,12 @@ def calcSentCombos(s):
 def calcBasicEntropy():
     combs = 0
     for i in range(len(s.simple)):
-        entropy += (calcSentCombos(s.simple[i]))
+        combs += (calcSentCombos(s.simple[i]))
     return math.log(combs, 2)
 
 # Calculates (and returns) the bits of entropy over all complex structures using calcSentCombos
 def calcMediumEntropy():
-    entropy = 0
+    combs = 0
     for i in range(len(s.complex)):
         combs += (calcSentCombos(s.complex[i]))
     return math.log(combs, 2)
@@ -142,8 +145,26 @@ def calcTestEntropy():
 welcome()
 
 # Testing calls
+
 #print(calcBasicEntropy())
 #print(calcMediumEntropy())
 #print(calcCryptoEntropy())
 #print(calcTestEntropy())
 #print(len(w.adverbs))
+#print(len(w.adjectives))
+#print(len(w.nouns))
+#print(len(w.verbs))
+#print(len(w.prepositions))
+#print(len(w.conjunctions))
+#print(len(w.qualifiers))
+#print(len(w.questions))
+#print(len(s.simple))
+#print(len(s.complex))
+
+
+#for i in range(30):
+#    genBasicSentence()
+#for i in range(30):
+#    genMediumSentence()
+#for i in range(30):
+#   genCryptoSentence()
